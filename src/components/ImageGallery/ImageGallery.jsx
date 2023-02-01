@@ -33,7 +33,7 @@ export default function ImageGallery({ search }) {
             .then(pictures => setPictures(prevState => ([...prevState, ...pictures.hits])))
             .catch(error => setError(error))
             .finally(setLoading(false))
-
+//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search]);
 
     useEffect(() => {
@@ -53,7 +53,7 @@ export default function ImageGallery({ search }) {
             .then(pictures => setPictures(prevState => ([...prevState, ...pictures.hits])))
             .catch(error => setError(error))
             .finally(setLoading(false))
-
+//eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     const nextPage = () => {
@@ -63,7 +63,7 @@ export default function ImageGallery({ search }) {
         return (<>
             {error && <h1>{error.message}</h1>}
             <ul className={css.ImageGallery}>
-            {pictures.length !== 0 && pictures.map(picture => <ImageGalleryItem key={picture.id} id={picture.id} webformatURL={picture.webformatURL} largeImageURL={picture.largeImageURL} tags={picture.tags} />)} 
+            {pictures.length !== 0 && pictures.map(picture => <ImageGalleryItem key={picture.id}  webformatURL={picture.webformatURL} largeImageURL={picture.largeImageURL} tags={picture.tags} />)} 
             </ul>
             {loading && <Loader/>}
             {showButton && <Button onClick={nextPage} />}
