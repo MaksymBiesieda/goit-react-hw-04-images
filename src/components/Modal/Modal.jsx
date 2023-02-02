@@ -8,20 +8,20 @@ const modalRoot = document.querySelector("#modal-root");
 export default function Modal({ onClose, image, tags }) {
     
     useEffect(() => {
-        window.addEventListener('keydown', keyDown);
-    })
-
-    const keyDown = (event) => {
-        if (event.code === 'Escape') {
-            onClose();
-            window.removeEventListener('keydown', keyDown);
+        const keyDown = (event) => {
+            if (event.code === 'Escape') {
+                onClose();
+            }
         }
-    }
+        window.addEventListener('keydown', keyDown);
+        return () => {
+            window.removeEventListener('keydown', keyDown);
+        };
+    }, [onClose]);
 
     const onBackdrop = (event) => {
         if (event.currentTarget === event.target) {
             onClose(); 
-            window.removeEventListener('keydown', keyDown);
         }
     }
 
